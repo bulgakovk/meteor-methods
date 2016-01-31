@@ -18,7 +18,7 @@ Meteor.ClientCall.apply = function(clientId, method, arguments, callback) {
   if(callback) Meteor.ClientCall._callbacks[messageId] = callback;
 };
 
-Meteor.ClientCall.callAll = function(method,arguments) {
+Meteor.ClientCall.callAll = function(method,arguments,callback) {
   var arr = new Array();
   Meteor.ClientCall._ids.find().forEach(function(data){
     arr.push(data);    
