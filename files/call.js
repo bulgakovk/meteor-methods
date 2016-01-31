@@ -18,15 +18,20 @@ Meteor.ClientCall.apply = function(clientId, method, arguments, callback) {
   if(callback) Meteor.ClientCall._callbacks[messageId] = callback;
 };
 
-Meteor.ClientCall.callAll = function(method,arguments,callback) {
+Meteor.ClientCall.callAll = function(method,arguments) {
+  var arr = new Array();
   Meteor.ClientCall._ids.find().forEach(function(data){
-    var messageId = Meteor.ClientCall._messages.insert({
-      clientId: data.clientId,
+    arr.push(data);    
+  });
+  arr.forEach(function(item,i,arr){
+    Meteor.ClientCall._messages.insert({
+      clientId: item.id,
       method: method,
       arguments: arguments,
       time: new Date().getTime(),
-    });    
+    });
   });
+
   if (callback) Meteor.ClientCall._callbacks[messageId] = callback;
 }
 
@@ -41,4 +46,11 @@ Meteor.methods({
     }
   },
 
+  'setClientId' : function(id){
+    Meteor.ClientCall._ids.insert({id : id});
+  },
+
+  'deleteClientId' : function(id){
+    Meteor.ClientCall._ids.remove({id : id});
+  }
 });

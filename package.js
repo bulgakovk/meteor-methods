@@ -1,10 +1,10 @@
 
 
 Package.describe({
-  name:     "anti:methods",
-  version:  "0.4.0",
-  summary:  "Call client methods from the server",
-  git:      "https://github.com/anticoders/meteor-methods.git",
+  name:     "bulgakovk:callall",
+  version:  "0.9.0",
+  summary:  "Advanced version of anti:methods.Call client methods from the server",
+  git:      "https://github.com/bulgakovk/meteor-methods",
 });
 
 

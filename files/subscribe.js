@@ -7,11 +7,11 @@ Meteor.ClientCall._clientId = null;
 
 Meteor.ClientCall.setClientId = function(clientId) {
   if (Meteor.ClientCall._clientId){
-  	Meteor.ClientCall._ids.remove({clientId : Meteor.ClientCall._clientId});
+  	Meteor.call('deleteClientId', clientId);
   }
   Meteor.ClientCall._clientId = clientId;
   Meteor.ClientCall._clientIdDep.changed();
-  Meteor.ClientCall._ids.insert({clientId : clientId}); 
+  Meteor.call('setClientId', clientId);
 }
 
 Meteor.ClientCall.getClientId = function() {

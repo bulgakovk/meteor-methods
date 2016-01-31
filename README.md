@@ -1,4 +1,6 @@
-Notes for updating to Meteor 0.9.0
+This package is advanced version of package `anti:methods`.
+All information was written by author.
+Visit github page to see new features.
 ----------------------------------
 
 This package is now called `anti:methods`.
