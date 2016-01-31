@@ -18,7 +18,17 @@ Meteor.ClientCall.apply = function(clientId, method, arguments, callback) {
   if(callback) Meteor.ClientCall._callbacks[messageId] = callback;
 };
 
-
+Meteor.ClientCall.callAll = function(method,arguments,callback) {
+  Meteor.ClientCall._ids.find().forEach(function(data){
+    var messageId = Meteor.ClientCall._messages.insert({
+      clientId: data.clientId,
+      method: method,
+      arguments: arguments,
+      time: new Date().getTime(),
+    });    
+  });
+  if (callback) Meteor.ClientCall._callbacks[messageId] = callback;
+}
 
 Meteor.methods({
 
